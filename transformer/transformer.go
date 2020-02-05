@@ -41,6 +41,7 @@ func NewTransformer(doc *goquery.Document, entry *movabletype.Entry, outputImage
 			&EmbedLinkTransformer{doc},
 			&SyntaxTransformer{doc},
 			&BlockquoteTransformer{doc},
+      &MathTransformer{doc},
 		},
 	}
 }

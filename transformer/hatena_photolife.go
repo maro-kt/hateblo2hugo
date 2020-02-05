@@ -29,16 +29,15 @@ func (t *HatenaPhotolifeTransformer) Transform() (e error) {
 	t.doc.Find("span[itemtype='http://schema.org/Photograph'] > img").Each(func(_ int, s *goquery.Selection) {
 		src, _ := s.Attr("src")
 		style, _ := s.Attr("style")
+    log.Printf("%s saving", src)
 
-		if t.updateImage {
-			if src != "" {
-				if err := t.saveImage(src); err != nil {
-					e = err
-					return
-				}
-				log.Printf("dowloaded %s is success", src)
-			}
-		}
+    if src != "" {
+      if err := t.saveImage(src); err != nil {
+        e = err
+        return
+      }
+      log.Printf("dowloaded %s is success", src)
+    }
 
 		extAttr := ""
 		if style != "" {
